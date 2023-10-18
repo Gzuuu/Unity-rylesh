@@ -1,0 +1,34 @@
+{
+    "name": "ImputManager",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "2ef34051-e912-4de4-b59b-380e9fe33042",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "ce9dc1e6-0bd7-408f-9524-4990a106ce3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8fe9031d-502f-4552-8449-f27203cd41ad",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
