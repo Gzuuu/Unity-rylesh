@@ -46,22 +46,17 @@ public class PlayerCombat : MonoBehaviour
     {
         lastClickedTime = Time.time;
         noOfClicks++;
+        var attack1 = animator.GetBool("punchR");
+
         if (noOfClicks == 1)
         {
             animator.SetBool("punchR", true);
         }
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 2);
         
-        if (noOfClicks >= 1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("PunchRight"))
+        if (noOfClicks >= 2 && !attack1)
         {
-            animator.SetBool("punchR", false);
             animator.SetBool("punchL", true);
-        }
-
-        if (noOfClicks >= 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f && animator.GetCurrentAnimatorStateInfo(0).IsName("PunchLeft"))
-        {
-            animator.SetBool("punchL", false);
-            animator.SetBool("punchR", true);
         }
     }
 }
