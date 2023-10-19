@@ -17,11 +17,8 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(target != null)
-        {
-            Vector3 targetPosition = target.position + offset;
+         Vector3 targetPosition = target.position + offset;
 
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        }
+         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }
