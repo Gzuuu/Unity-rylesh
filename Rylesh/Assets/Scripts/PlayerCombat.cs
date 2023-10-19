@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
+    public Camera cam;
+    private PlayerController playerController;
     public float cooldownTime = 2f;
     private float nextFireTime = 0f;
     public static int noOfClicks = 0;
@@ -40,6 +42,14 @@ public class PlayerCombat : MonoBehaviour
                 OnClick();
             }
         }
+        if(Input.GetMouseButton(1))
+        {
+            ZoomView();
+        }
+        if(Input.GetMouseButtonUp(1))
+        {
+            OnRelease();
+        }
     }
 
     void OnClick()
@@ -58,5 +68,22 @@ public class PlayerCombat : MonoBehaviour
         {
             animator.SetBool("punchL", true);
         }
+    }
+
+    void OnRelease()
+    {
+        PlayerController.Instance.SetAiming(false);
+    }
+
+    void ZoomView()
+    {
+        PlayerController.Instance.SetAiming(true);
+        animator.SetBool("isMoving", false);
+        var mousePos = Input.mousePosition;
+        var playerPos = cam.WorldToScreenPoint(transform.position);
+        var direction = mousePos - playerPos;
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.down);
     }
 }

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private float? lastGroundTime;
     private float? jumpButtonPressedTime;
     private bool isJumping;
+    private static PlayerController instance;
+    public static PlayerController Instance => instance;
+    private bool aiming = false;
     // Update is called once per frame
     void Update()
     {
@@ -73,18 +76,21 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = ySpeed;
 
-        characterController.Move(velocity * Time.deltaTime);
-
-        if (movementDirection != Vector3.zero)
+        if (aiming == false)
         {
-            animator.SetBool("isMoving", true);
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            characterController.Move(velocity * Time.deltaTime);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
+            if (movementDirection != Vector3.zero)
+            {
+                animator.SetBool("isMoving", true);
+                Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
         }
     }
     void Start()
@@ -92,5 +98,11 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
+        instance = this;
+    }
+
+    public void SetAiming(bool condition)
+    {
+        aiming = condition;
     }
 }

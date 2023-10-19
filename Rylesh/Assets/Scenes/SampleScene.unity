@@ -766,6 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94336a8d454923740b6c3e4fb2eff4b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
   cooldownTime: 0.8
   maxComboDelay: 1
 --- !u!1660057539 &9223372036854775807
